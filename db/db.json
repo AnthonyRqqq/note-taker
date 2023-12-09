@@ -1,6 +1,16 @@
 [
     {
-        "title":"Test Title",
-        "text":"Test text"
+        "title": "Test Title",
+        "text": "Test text"
+    },
+    {
+        "title": "This is the new note",
+        "text": "New note text",
+        "review_id": "4df8"
+    },
+    {
+        "title": "Another new note!",
+        "text": "Another new note text!",
+        "review_id": "ffd5"
     }
 ]

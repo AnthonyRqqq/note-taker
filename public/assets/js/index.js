@@ -68,7 +68,15 @@ const deleteNote = (id) =>
     headers: {
       'Content-Type': 'application/json'
     }
-  });
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log('Successful DELETE request:', data);
+      return data;
+    })
+    .catch((error) => {
+      console.error('Error in DELETE request:', error);
+    });
 
 const renderActiveNote = () => {
   hide(saveNoteBtn);

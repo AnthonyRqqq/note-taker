@@ -28,6 +28,7 @@ app.get('/api/notes', (req, res) => {
     // console.log(database);
 });
 
+// Allows POST method to notes
 app.post('/api/notes', (req, res) => {
     console.info(`${req.method} request was recieved`);
 
@@ -37,7 +38,7 @@ app.post('/api/notes', (req, res) => {
         const newNote = {
             title,
             text,
-            review_id: uuid()
+            id: uuid()
         };
 
         fs.readFile('./db/db.json', 'utf8', (err, data) => {
@@ -71,7 +72,32 @@ app.post('/api/notes', (req, res) => {
     }
 });
 
-app.delete('/api/notes', (req, res) => {
+// Allow DELETE method to notes
+app.delete('/api/notes/:id', (req, res) => {
+    const noteId = req.params.id;
+
+    fs.readFile('./db/db.json', 'utf8', (err,data) => {
+        if (err) {
+            console.error(err);
+        } else {
+            const parsedNotes = JSON.parse(data)
+            const deletedNote = parsedNotes.find((obj) => obj.id === noteId);
+            console.log(deletedNote);
+
+            const newParsedNotes = parsedNotes.filter((element) => element !== deletedNote);
+            console.log(newParsedNotes);
+
+            fs.writeFile(
+                './db/db.json',
+                JSON.stringify(newParsedNotes, null, 4),
+                (writeErr) =>
+                  writeErr
+                    ? console.error(writeErr)
+                    : console.info('Successfully updated notes!')
+              );
+        }
+    })
+
 
 });
 

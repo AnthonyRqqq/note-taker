@@ -46,6 +46,22 @@ const getNotesPage = () =>
     }
   });
 
+const getActiveNote = (id) =>
+  fetch(`/notes/${id}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+      .then((res) => res.json())
+      .then((data) => {
+        console.log('Successful GET request:', data);
+        return data;
+      })
+      .catch((error) => {
+        console.error('Error in GET request:', error);
+      })
+  });
+
 const getNotes = () =>
   fetch('/api/notes', {
     method: 'GET',

@@ -23,6 +23,22 @@ app.get('/notes', (req, res) => {
     res.sendFile(path.join(__dirname, '/public/notes.html'));
 })
 
+app.get('/notes/:id', (req, res) => {
+    const noteId = req.params.id;
+
+    fs.readFile('./db/db.json', 'utf8', (err,data) => {
+        if (err) {
+            console.error(err);
+        } else {
+            const parsedNotes = JSON.parse(data)
+            const activeNote = parsedNotes.find((obj) => obj.id === noteId);
+            console.log(activeNote);
+
+            return activeNote;
+        };
+    });
+});
+
 app.get('/api/notes', (req, res) => {
     res.status(200).json(database);
     // console.log(database);

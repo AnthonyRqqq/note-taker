@@ -37,7 +37,7 @@ const getHomePage = () =>
     }
   });
 
-// Allows navigation to notes.html file
+// Allows navigation to notes.html file with GET method
 const getNotesPage = () =>
   fetch('/notes', {
     method: 'GET',
@@ -46,6 +46,7 @@ const getNotesPage = () =>
     }
   });
 
+// GET method to view active note based on provided id
 const getActiveNote = (id) =>
   fetch(`/notes/${id}`, {
     method: 'GET',
@@ -62,6 +63,7 @@ const getActiveNote = (id) =>
       })
   });
 
+// GET method to read db.json and return saved notes as json
 const getNotes = () =>
   fetch('/api/notes', {
     method: 'GET',

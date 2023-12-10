@@ -14,15 +14,17 @@ const app = express();
 app.use(express.json());
 app.use(express.static('public'));
 
-
+// GET method for the homepage navigation
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '/public/index.html'));
 });
 
+// GET method to navigate to the page ending in /notes
 app.get('/notes', (req, res) => {
     res.sendFile(path.join(__dirname, '/public/notes.html'));
 })
 
+// GET method for viewing specific notes based on provided ID
 app.get('/notes/:id', (req, res) => {
     const noteId = req.params.id;
 
@@ -39,6 +41,7 @@ app.get('/notes/:id', (req, res) => {
     });
 });
 
+// GET method to read db.json and return saved notes as json
 app.get('/api/notes', (req, res) => {
     res.status(200).json(database);
     // console.log(database);

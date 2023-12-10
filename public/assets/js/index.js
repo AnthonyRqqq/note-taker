@@ -28,6 +28,15 @@ const hide = (elem) => {
 // activeNote is used to keep track of the note in the textarea
 let activeNote = {};
 
+// Get method for homepage
+const getHomePage = () => 
+  fetch('/', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  });
+
 // Allows navigation to notes.html file
 const getNotesPage = () =>
   fetch('/notes', {
@@ -45,6 +54,7 @@ const getNotes = () =>
     }
   });
 
+// Front end fetch request using POST method to save notes
 const saveNote = (note) =>
   fetch('/api/notes', {
     method: 'POST',
@@ -62,6 +72,7 @@ const saveNote = (note) =>
       console.error('Error in POST request:', error);
     });
 
+// Front end fetch request using DELETE method to remove notes
 const deleteNote = (id) =>
   fetch(`/api/notes/${id}`, {
     method: 'DELETE',
